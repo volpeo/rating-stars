@@ -3,10 +3,19 @@
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-  <div class="form-inputs">
-    <%= f.input :rating %>
-    <%= f.input :content %>
+  <h1>Rate me</h1>
+  <div class="rating-stars">
+    <%= f.collection_radio_buttons :rating, (1..5).to_a.reverse, :to_i, :to_i, boolean_style: :inline, item_wrapper_tag: false do |b| %>
+      <%= b.radio_button class: "star star-#{b.text}" %>
+      <%= b.label class: "star star-#{b.text}" do %>
+        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M32 11.4286L20.8036 9.97211L16 0L11.1953 9.97211L0 11.4286L8.23104 18.8884L6.10714 29.7121L16 24.3974L25.8951 29.7121L23.7679 18.8884L32 11.4286Z" fill="#CCC">
+        </svg>
+      <% end %>
+    <% end %>
   </div>
+
+  <%= f.input :content %>
 
   <div class="form-actions">
     <%= f.button :submit %>

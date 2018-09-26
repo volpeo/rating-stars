@@ -1,0 +1,35 @@
+$star-danger: #EE5F5B;
+$star-muted: #CCC;
+$star-selected: #F3BB3D;
+
+.rating-stars {
+  display: inline-block;
+  direction: rtl;
+
+  input.star {
+    display: none;
+  }
+
+  label.star svg path {
+    fill: $star-muted;
+    transition: all .2s;
+  }
+
+  input.star:checked ~ label.star svg path {
+    fill: $star-selected;
+    transition: all .25s;
+  }
+
+  input.star-1:checked ~ label.star svg path {
+    fill: $star-danger;
+  }
+
+  label.star {
+    transition: all .2s;
+    &:hover, &:hover ~ label.star {
+      transform: rotate(-15deg) scale(1.1);
+      transform-origin: center;
+    }
+  }
+
+}
