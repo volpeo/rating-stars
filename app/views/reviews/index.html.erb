@@ -1,29 +1,18 @@
-<p id="notice"><%= notice %></p>
+<%= render 'form', review: @review %>
 
-<h1>Reviews</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Rating</th>
-      <th>Content</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @reviews.each do |review| %>
-      <tr>
-        <td><%= review.rating %></td>
-        <td><%= review.content %></td>
-        <td><%= link_to 'Show', review %></td>
-        <td><%= link_to 'Edit', edit_review_path(review) %></td>
-        <td><%= link_to 'Destroy', review, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+<% @reviews.each do |review| %>
+  <h2>
+    <% review.rating.times do %>
+      <svg width="32" height="30" viewBox="0 0 32 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M32 11.4286L20.8036 9.97211L16 0L11.1953 9.97211L0 11.4286L8.23104 18.8884L6.10714 29.7121L16 24.3974L25.8951 29.7121L23.7679 18.8884L32 11.4286Z" fill="#F3BB3D"/>
+      </svg>
     <% end %>
-  </tbody>
-</table>
 
-<br>
-
-<%= link_to 'New Review', new_review_path %>
+    <% (5 - review.rating).times do %>
+      <svg width="32" height="30" viewBox="0 0 32 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M32 11.4286L20.8036 9.97211L16 0L11.1953 9.97211L0 11.4286L8.23104 18.8884L6.10714 29.7121L16 24.3974L25.8951 29.7121L23.7679 18.8884L32 11.4286Z" fill="#CCC"/>
+      </svg>
+    <% end %>
+    <%= review.content %>
+  </h2>
+<% end %>
